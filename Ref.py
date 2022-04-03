@@ -8,7 +8,8 @@ from tkinter import filedialog
 extension = ['*']
 states = []
 filepath = ""
-paths = []
+paths = {"Test": 1234, "Test2": 4321}
+
 
 
 # root window
@@ -86,13 +87,16 @@ def Get_Directory_Source():
     filepath = filedialog.askdirectory()
     source.delete(0, 3000)
     source.insert(1, filepath)
-    for ext in pathlib.Path(filepath).rglob('*'):
-        head, tail = os.path.split(ext)
+    for path in pathlib.Path(filepath).rglob('*'):
+        head, tail = os.path.split(path)
         name, ext = os.path.splitext(tail)
         if ext not in extension:
             extension.append(ext)
-    Checkbox()
 
+
+
+    print(str(paths))
+    Checkbox()
 
 def Get_Directory_Destination():
     filepath = filedialog.askdirectory()
